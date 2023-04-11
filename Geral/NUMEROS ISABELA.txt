@@ -1,0 +1,5 @@
+where Numero like '%a%' or Numero like '%b%' or Numero like '%c%' or Numero like '%d%' or Numero like '%e%' or Numero like '%f%' or 
+Numero like '%g%' or Numero like '%h%' or Numero like '%i%' or Numero like '%j%' or Numero like '%k%' or Numero like '%l%' or 
+Numero like '%m%' or Numero like '%n%' or Numero like '%o%' or Numero like '%p%' or Numero like '%q%' or Numero like '%r%' or 
+Numero like '%s%' or Numero like '%t%' or Numero like '%u%' or Numero like '%v%' or Numero like '%x%' or Numero like '%w%' or 
+Numero like '%y%' or Numero like '%z%' or Numero like '%\%' or Numero like '%/%'

@@ -1,0 +1,11 @@
+-----------------Rodar qualquer script ja salvo--------------------------
+
+sqlcmd -S [server] -d [database] -U [usuario] -P [senha] -i [script.sql] -o [log.txt]
+
+sqlcmd -U SA -P medsys -S NTBAST004\SQL -i C:\medsystem.sql -o C:\log.txt
+
+
+----------------Fazer backup por script-----------------------------------
+
+
+SQLCMD -S ntbast004\sql -U sa -P medsys -Q "BACKUP DATABASE [Medsystem] TO DISK = 'C:\MedSys\BACKUP\Backup_Medsystem.bak'"

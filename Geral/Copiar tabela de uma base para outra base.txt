@@ -1,0 +1,1 @@
+select * into BASE1.dbo.TABELA1 from BASE2.dbo.TABELA2

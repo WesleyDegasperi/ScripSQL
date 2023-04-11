@@ -1,0 +1,25 @@
+USE [MEDSYSTEM]
+
+ALTER TABLE [dbo].[swclientes] ADD [Etnia] [varchar](10) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Codigo_Familia] [int] NULL
+ALTER TABLE [dbo].[swclientes] ADD [Num_Prontuario] [int] NULL
+ALTER TABLE [dbo].[swclientes] ADD [Num_Prontuario_Papel] [int] NULL
+ALTER TABLE [dbo].[swclientes] ADD [Num_Pessoa_Domicilio] [int] NULL
+ALTER TABLE [dbo].[swclientes] ADD [Cor] [smallint] NULL
+ALTER TABLE [dbo].[swclientes] ADD [UF] [varchar](2) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Nacionalidade] [smallint] NULL
+ALTER TABLE [dbo].[swclientes] ADD [Pais_Origem] [varchar](50) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Data_Entrada_Brasil] [datetime] NULL
+ALTER TABLE [dbo].[swclientes] ADD [Numero_Portaria] [varchar](20) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Escolaridade] [varchar](2) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Situacao_Conjugal] [varchar](70) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Frequenta_Escola] [bit] NULL
+SET ANSI_PADDING OFF
+ALTER TABLE [dbo].[swclientes] ADD [Numero] [varchar](5) NULL
+ALTER TABLE [dbo].[swclientes] ADD [CodTitular] [int] NULL
+SET ANSI_PADDING ON
+ALTER TABLE [dbo].[swclientes] ADD [CodIBGE] [varchar](8) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Tipo_Sanguineo] [varchar](2) NULL
+ALTER TABLE [dbo].[swclientes] ADD [FatorRH] [char](1) NULL
+ALTER TABLE [dbo].[swclientes] ADD [Fumante] [char](1) NULL
+

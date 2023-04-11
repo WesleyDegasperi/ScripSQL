@@ -1,0 +1,30 @@
+SELECT		dbo.cpcontas_receber.Cod_Pai, dbo.cpcontas_receber.CodCliente, procdoc.Doctor, dbo.cpcontas_receber.Devedor, dbo.cpcentrocusto.descricao as CentroCusto, dbo.cpcontas_receber.DataEmissao, cb.Banco as Conta, dbo.cpcontas_receber.FormaPagto AS [Forma de pagamento], dbo.cpcontas_receber.[Nº Documento],                   
+	CASE	dbo.cpcontas_receber.CodSis                     
+		WHEN 1 THEN 'Ger.Com'                     
+		WHEN 2 THEN 'SAC'                     
+		WHEN 4 THEN 'MedTISS'                     
+		WHEN 5 THEN 'Metra/ LabSys'                     
+		WHEN 6 THEN 'Medsystem'                     
+		WHEN 7 THEN 'Sigedweb'                     
+		ELSE 'ConPaRe'                     
+		END AS Sistema,                    
+		concat(dbo.cpcontas_receber.[Nº da Parcela], '/', num.parcela) as [Nº da Parcela],                  
+		[Valor Parcela] AS Total,                    
+		Valorpago AS TotalPago,                    
+		[desconto] AS TotalDesconto,                    
+		[vencimento] AS Vencimento,                    
+		dbo.cpcontas_receber.Recebimento               
+	FROM                             
+				dbo.cpcontas_receber LEFT JOIN dbo.cpcentrocusto                     
+				ON dbo.cpcontas_receber.cod_centrocusto = dbo.cpCentroCusto.Cod_CentroCusto                    
+				LEFT JOIN (select cod_pai, MAX([Nº da Parcela]) as parcela from cpcontas_receber group by Cod_Pai) num on dbo.cpcontas_receber.cod_pai = num.cod_pai             
+				LEFT JOIN cpcontas_bancarias cb on cb.Código = dbo.cpcontas_receber.[Conta Preferencial]     
+				LEFT JOIN procpact ON procpact.ProcedureNumber = cpcontas_receber.Codigo_Fatura
+				LEFT JOIN procdoc ON procdoc.ProcedureNumber = cpcontas_receber.Codigo_Fatura and cpcontas_receber.[Valor Parcela] = procdoc.ProcValue
+	WHERE		(dbo.cpcontas_receber.Excluido = 0 AND dbo.cpcontas_receber.Tipo >= -1)     and cpcontas_receber.Devedor = 'ELEIR PERIN'          
+--and  (dbo.cpcontas_receber.DataEmissao> '#dt1#' AND dbo.cpcontas_receber.DataEmissao<= '#dt2#' +  ' 23:59:59.999')    
+
+GROUP BY	dbo.cpcontas_receber.Cod_Pai, dbo.cpcontas_receber.CodCliente, dbo.cpcontas_receber.Devedor, dbo.cpcontas_receber.CodSis, dbo.cpcontas_receber.DataEmissao,                    
+				dbo.cpcontas_receber.Recibo, dbo.cpcontas_receber.Codigo_Fatura,  dbo.cpcentrocusto.descricao, dbo.cpcontas_receber.[Nº da Parcela],  dbo.cpcontas_receber.FormaPagto, dbo.cpcontas_receber.[Nº Documento], 
+				dbo.cpcontas_receber.[Valor Parcela], dbo.cpcontas_receber.ValorPago, dbo.cpcontas_receber.Desconto, dbo.cpcontas_receber.Vencimento, dbo.cpcontas_receber.Recebimento , num.parcela, cb.banco,procdoc.Doctor              
+	ORDER BY	cod_pai           

@@ -1,0 +1,13 @@
+update sus.dbo.bpai_procedimentos
+SET
+
+bpai_procedimentos.CNS = swclientes.cns
+
+FROM 
+sus.dbo.bpai_procedimentos
+INNER JOIN medsystem.dbo.swclientes ON 
+bpai_procedimentos.cod_cli = swclientes.código
+
+
+
+where cod_bpai > 126 and bpai_procedimentos.CNS = ''

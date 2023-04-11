@@ -1,0 +1,1 @@
+update TABELA set COLUNA = REPLACE(CAST(COLUNA AS VARCHAR(MAX)),'ServidorAntigo', 'ServidorAtual')

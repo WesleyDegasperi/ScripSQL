@@ -1,0 +1,15 @@
+select  distinct a.docagnoc,  f.codrisco, f.CodSetor, f.CodFuncao, f.codempresa, emp.RazaoSocial, func.Nome as Função, f.codrisco As [Código do Risco], r.Descricao,
+r.CodeSocial, e.Risco as [Agente Nocivo], convert(varchar(max),a.Definicao) AS Definição, datalength(a.Definicao) AS QtdDefinicao
+from MTRiscosPPRAFunc f
+inner join mtriscos r ON r.Codigo = f.CodRisco
+inner join eSocial_Tabela24_AgentesNocivosAtividades e ON e.id = r.CodeSocial
+inner join MTAgNocFunc a ON a.CodeSocial = r.CodeSocial and a.CodFuncao = f.CodFuncao AND a.docagnoc = f.codppra
+inner join mtdeptos s ON s.codigo = f.codsetor
+inner join mtfuncoes func ON func.Codigo = f.CodFuncao
+inner join mtempresas emp on emp.Codigo = a.CodEmpresa
+where datalength(a.Definicao) > 100 and 
+r.codesocial IN ('01.01.001', '01.02.001', '01.03.001', '01.04.001', '01.05.001', '01.06.001', '01.07.001', '01.08.001', 
+'01.09.001', '01.10.001', '01.12.001', '01.13.001', '01.14.001', '01.15.001', '01.16.001', '01.17.001', '01.18.001', '05.01.001')
+AND f.apagado = 0 and r.CodeSocial is not null AND r.definicao like a.definicao
+AND s.excluido = 0 AND func.excluido = 0
+order by f.CodEmpresa, f.CodSetor, f.CodFuncao

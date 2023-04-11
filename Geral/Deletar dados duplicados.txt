@@ -1,0 +1,17 @@
+-- Pesquisar quantidade de linhas excluidas
+
+SELECT CID, Count(*) AS Qtd  FROM cid10
+GROUP BY CID
+HAVING Count(*) > 1
+order BY CID
+
+-- Deletar  todas as linhas duplicadas
+
+with cte as 
+( 
+   select CID ,  
+          row_number ()  over ( partition  by cid order  by cid )  as r
+    from cid10
+
+ ) 
+delete cte where r >  1 ;

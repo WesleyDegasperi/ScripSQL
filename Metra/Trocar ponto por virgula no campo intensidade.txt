@@ -1,0 +1,8 @@
+select intensidade from mtriscosppra
+where intensidade like '%,%'
+
+
+
+update mtriscosppra 
+set intensidade = REPLACE(CAST(intensidade AS VARCHAR(MAX)),'.', ',')
+where intensidade like '%.%'
